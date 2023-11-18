@@ -17,7 +17,8 @@ const files = fs
   .filter(file => (file.indexOf('.') !== 0) && (file !== base) && (file.slice(-3) === '.js'));
 
 await Promise.all(files.map(async file => {
-  const model = (await import(join(__dirname, file))).default(sequelize, DataTypes);
+  const modulePath = 'file://' + join(__dirname, file).replace(/\\/g, '/');
+  const model = (await import(modulePath)).default(sequelize, DataTypes);
   db[model.name] = model;
 }));
 
