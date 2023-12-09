@@ -59,10 +59,6 @@ const apiErrors = Object.entries({
   };
   return map;
 }, {});
-
-/**
- * API Error class which holds different kind of error types
- */
 export default {
   ...apiErrors,
   APIError,

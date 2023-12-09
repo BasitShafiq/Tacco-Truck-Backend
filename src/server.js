@@ -10,7 +10,7 @@ import { Logger } from './config/logger.js';
 
 const logger = Logger(fileURLToPath(import.meta.url));
 
-const port = process.env.APP_PORT || 3000;
+const port = process.env.APP_PORT || 5000;
 
 const server = app.listen(port, () => {
   logger.info(`App running on port ${chalk.greenBright(port)}...`);

@@ -1,9 +1,4 @@
-/**
- * Logger: winston logger
- *
- * @author Chetan Patil
- * @version 1.0.0
- */
+
 import { transports, createLogger, format } from 'winston';
 
 const {
@@ -29,16 +24,6 @@ const getFilename = input => {
   const parts = input.split(/[\\/]/);
   return `${parts[parts.length - 2]}/${parts.pop()}`;
 };
-
-/**
-   * In this function custom log format is created
-   * Here we have defined two formats one is JSON & other SingleLine
-   *
-   * If "JSON_LOG" from env is set to true then  JSON log is returned
-   * else single line
-   *
-   * @param {string} filename - filename in which log is added
-   */
 
 const loggerFormat = filename => printf(({
   // eslint-disable-next-line no-shadow

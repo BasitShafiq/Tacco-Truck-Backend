@@ -1,67 +1,49 @@
-/**
- * User controller
- *
- * @author Chetan Patil
- */
 import httpStatus from 'http-status';
-
 import * as errors from '../utils/api-error.js';
 import * as response from '../middlewares/response-handler.js';
 import { findAll, findById, create } from '../services/user.service.js';
+import * as auth from '../auth/passport.js'
 
-/**
- * @constant {function} responseHandler - function to form generic success response
- */
 const responseHandler = response.default;
-/**
- * @constant {NotFoundError} NotFoundError - not found error object
- */
+
 const { NotFoundError } = errors.default;
 
-/**
- * Function which provides functionality
- * to add/create new user in system
- *
- * @param {*} req - express HTTP request object
- * @param {*} res - express HTTP response object
- */
-const addUser = async (req, res) => {
-  const userDetails = await create(req.body);
-  res.status(httpStatus.CREATED).send(responseHandler(userDetails));
+const googleLogin = () => {
+  return [
+    auth.passport.authenticate('google', { scope: ['profile', 'email'] }),
+  ]
 };
 
-/**
- * Function which provides functionality
- * to retrieve all users present in system
- *
- * @param {*} req - express HTTP request object
- * @param {*} res - express HTTP response object
- */
-const getUsers = async (req, res) => {
-  const users = await findAll();
-  res.status(httpStatus.OK).send(responseHandler(users));
+
+const handleGoogleAuthCallback = async (req, res, next) => {
+  auth.passport.authenticate('google', {
+    failureRedirect: '/',
+  })(req, res, async () => {
+    if (req.user) {
+      const userName = req.user.displayName;
+      const userEmail = req.user.emails[0].value;
+
+      console.log('User Name:', userName);
+      console.log('User Email:', userEmail);
+
+      res.status(200).json({
+        success: true,
+        userName: userName,
+        userEmail: userEmail,
+      });
+    } else {
+      console.error('Error: No user information found');
+      res.status(500).json({
+        success: false,
+        msg: 'Error: No user information found',
+      });
+    }
+  });
 };
 
-/**
- * Function which provides functionality
- * to retrieve specific user based on provided userId
- *
- * @param {*} req - express HTTP request object
- * @param {*} res - express HTTP response object
- *
- * @throws {NotFoundError} - if no such user exists for provided userId
- */
-const getUser = async (req, res) => {
-  const user = await findById(req.params.userId);
-  if (!user) {
-    throw new NotFoundError();
-  }
 
-  res.status(httpStatus.OK).send(responseHandler(user));
-};
 
 export {
-  addUser,
-  getUsers,
-  getUser,
+  handleGoogleAuthCallback,
+  googleLogin
 };
