@@ -22,6 +22,7 @@
   "author": "chetan0779@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "chalk": "^5.3.0",
     "cls-hooked": "^4.2.2",
     "cors": "^2.8.5",
@@ -38,6 +39,7 @@
     "http-status": "^1.7.3",
     "js-yaml": "^4.1.0",
     "morgan": "^1.10.0",
+    "multer": "^1.4.5-lts.1",
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "pg": "^8.11.3",

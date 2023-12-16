@@ -1,4 +1,3 @@
-
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -7,21 +6,43 @@ export default (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      field: 'name',
+    },
+
+    email: DataTypes.STRING,
     gender: {
       type: DataTypes.ENUM,
       values: ['Male', 'Female', 'Other'],
     },
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    profile_image: {
+      type: DataTypes.STRING,
+      field: 'profile_image',
+    },
+    password: DataTypes.STRING,
+    date_of_birth: {
+      type: DataTypes.DATEONLY,
+      field: 'date_of_birth',
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      field: 'created_at',
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      field: 'updated_at',
+      defaultValue: DataTypes.NOW,
+    },
   }, {
-    tableName: 'user',
+    tableName: 'users',
     underscored: true,
   });
 
   User.associate = models => {
-    models.User.hasMany(models.Skill, { foreignKey: 'userId', targetId: 'id' });
+    User.hasMany(models.Skill, { foreignKey: 'user_id', sourceKey: 'id' });
   };
+
   return User;
 };

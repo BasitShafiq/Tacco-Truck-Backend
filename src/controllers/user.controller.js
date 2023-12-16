@@ -1,19 +1,31 @@
 import httpStatus from 'http-status';
 import * as errors from '../utils/api-error.js';
 import * as response from '../middlewares/response-handler.js';
-import { findAll, findById, create } from '../services/user.service.js';
+import { create } from '../services/user.service.js';
 import * as auth from '../auth/passport.js'
+import bcrypt from 'bcrypt';
 
 const responseHandler = response.default;
-
 const { NotFoundError } = errors.default;
+
+const registerUser = async (req, res) => {
+  const { password, confirm_password, ...otherUserDetails } = req.body;
+  if (password !== confirm_password) {
+    return res.status(httpStatus.BAD_REQUEST).send('Password and Confirm Password do not match');
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+  const imageName = req.file ? req.file.filename : null;
+  const userDetails = await create({ ...otherUserDetails, password: hashedPassword, profile_image: imageName });
+
+  res.status(httpStatus.CREATED).send(responseHandler(userDetails));
+};
 
 const googleLogin = () => {
   return [
     auth.passport.authenticate('google', { scope: ['profile', 'email'] }),
   ]
 };
-
 
 const handleGoogleAuthCallback = async (req, res, next) => {
   auth.passport.authenticate('google', {
@@ -41,9 +53,8 @@ const handleGoogleAuthCallback = async (req, res, next) => {
   });
 };
 
-
-
 export {
   handleGoogleAuthCallback,
-  googleLogin
+  googleLogin,
+  registerUser
 };
