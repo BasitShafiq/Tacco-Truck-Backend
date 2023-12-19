@@ -14,7 +14,7 @@ const logger = Logger(fileURLToPath(import.meta.url));
 const app = express();
 
 app.use(session({
-  secret: 'your_secret_key',
+  secret: process.env.SECRET_KEY,
   resave: false,
   saveUninitialized: true,
 }));
