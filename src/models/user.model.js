@@ -16,6 +16,10 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.ENUM,
       values: ['Male', 'Female', 'Other'],
     },
+    role: {
+      type: DataTypes.ENUM,
+      values: ['User', 'Driver'],
+    },
     profile_image: {
       type: DataTypes.STRING,
       field: 'profile_image',

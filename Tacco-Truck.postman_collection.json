@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "25ddb499-0108-4503-b549-b7e39fedb60f",
+		"_postman_id": "cfe73c27-17d2-4b9f-96fa-fbf7fb353d9b",
 		"name": "Tacco-Truck",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "14373548"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25406548"
 	},
 	"item": [
 		{
@@ -13,7 +13,10 @@
 					"name": "GoogleLogin",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -63,6 +66,11 @@
 								{
 									"key": "gender",
 									"value": "Male",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "user",
 									"type": "text"
 								},
 								{
@@ -184,6 +192,121 @@
 							"query": [
 								{
 									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Driver",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "vehicle_id",
+									"value": "dummy@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "date_of_birth",
+									"value": "1990-01-15",
+									"type": "text"
+								},
+								{
+									"key": "location_id",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "created_at",
+									"value": "2023-06-26T12:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "updated_at",
+									"value": "2023-06-26T12:00:00Z",
+									"type": "text"
+								},
+								{
+									"key": "truckName",
+									"value": "Tast TAcos on wheels",
+									"type": "text"
+								},
+								{
+									"key": "truckDescription",
+									"value": "Lorem ipsum dollar sit",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/drivers/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"drivers",
+								"register"
+							],
+							"query": [
+								{
+									"key": "truckName",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "truckDescription",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "vehicle_id",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "userId",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateDriver",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/drivers/update?userId=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"drivers",
+								"update"
+							],
+							"query": [
+								{
+									"key": "driverId",
 									"value": "1"
 								}
 							]
