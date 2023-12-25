@@ -40,9 +40,5 @@ export default (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  User.associate = models => {
-    User.hasMany(models.Skill, { foreignKey: 'user_id', sourceKey: 'id' });
-  };
-
   return User;
 };
