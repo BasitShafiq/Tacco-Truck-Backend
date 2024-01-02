@@ -46,7 +46,9 @@ export default (sequelize, DataTypes) => {
 
   User.associate = models => {
     User.hasMany(models.Skill, { foreignKey: 'user_id', sourceKey: 'id' });
+    models.User.hasOne(models.Driver, { foreignKey: 'userId', targetId: 'id' });
   };
-
+  
+  
   return User;
 };

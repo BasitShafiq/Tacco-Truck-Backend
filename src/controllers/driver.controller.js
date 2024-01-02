@@ -1,7 +1,7 @@
 import httpStatus from 'http-status';
 import * as errors from '../utils/api-error.js';
 import * as response from '../middlewares/response-handler.js';
-import { create, findOne, update } from '../services/user.service.js';
+import { create, findOne, update } from '../services/driver.service.js';
 import * as auth from '../auth/passport.js'
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -10,9 +10,9 @@ const responseHandler = response.default;
 const { NotFoundError } = errors.default;
 
 const registerDriver = async (req, res) => {
-  const { driver } = req.body;
+  const driver  = req.body;
 
-  console.log(req);
+
   
   const driverDetails = await create(  driver );
 

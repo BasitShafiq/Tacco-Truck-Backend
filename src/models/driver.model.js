@@ -6,28 +6,47 @@ export default (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'user',
-          key: 'id',
-        },
-      },
       vehicleId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'vehicle',
+          model: 'vehicles',
           key: 'id',
         },
       },
-      
-      
+      userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+      },
+      locationId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'locations',
+          key: 'id',
+        },
+      },
+     
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
+      truckName:{
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      truckDescription: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+        
+      
+      
+      
     }, {
-      tableName: 'Driver',
+      tableName: 'drivers',
       underscored: true,
       name: {
         singular: 'Driver',
@@ -36,11 +55,12 @@ export default (sequelize, DataTypes) => {
     });
   
     Driver.associate = models => {
-      models.Skill.belongsTo(models.User, { foreignKey: 'userId', targetId: 'id' });
+      models.Driver.belongsTo(models.User, { foreignKey: 'userId', targetKey: 'id' });
+      models.Driver.belongsTo(models.Vehicle, { foreignKey: 'vehicleId', targetKey: 'id' });
+      models.Driver.belongsTo(models.Location, { foreignKey: 'locationId', targetKey: 'id' });
     };
-    Driver.associate = models => {
-      models.Skill.belongsTo(models.Vehicle, { foreignKey: 'vehicleId', targetId: 'id' });
-    };
+    
+   
     return Driver;
   };
   

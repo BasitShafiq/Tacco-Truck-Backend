@@ -210,44 +210,13 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "vehicle_id",
-									"value": "dummy@gmail.com",
-									"type": "text"
-								},
-								{
-									"key": "date_of_birth",
-									"value": "1990-01-15",
-									"type": "text"
-								},
-								{
-									"key": "location_id",
-									"value": "user",
-									"type": "text"
-								},
-								{
-									"key": "created_at",
-									"value": "2023-06-26T12:00:00Z",
-									"type": "text"
-								},
-								{
-									"key": "updated_at",
-									"value": "2023-06-26T12:00:00Z",
-									"type": "text"
-								},
-								{
-									"key": "truckName",
-									"value": "Tast TAcos on wheels",
-									"type": "text"
-								},
-								{
-									"key": "truckDescription",
-									"value": "Lorem ipsum dollar sit",
-									"type": "text"
+							"mode": "raw",
+							"raw": "{\r\n\t\"truckName\":\"Tasty Tacos\", \n\t \"truckDescription\":\"WE sell tasty tacos on wheels on remote locations\", \n\t \"vehicle_id\":\"1\", \n\t \"userId\":\"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
-							]
+							}
 						},
 						"url": {
 							"raw": "http://localhost:5000/v1/drivers/register",

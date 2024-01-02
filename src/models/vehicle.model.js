@@ -38,14 +38,16 @@ export default (sequelize, DataTypes) => {
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     }, {
-      tableName: 'Vehicle',
+      tableName: 'vehicles',
       underscored: true,
       name: {
         singular: 'Vehicle',
         plural: 'Vehicles',
       },
     });
-  
+    Vehicle.associate = models => {
+      models.Vehicle.hasOne(models.Driver, { foreignKey: 'vehicleId', targetId: 'id' });
+    };
     
     return Vehicle;
   };
