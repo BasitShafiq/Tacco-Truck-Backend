@@ -10,22 +10,22 @@ const responseHandler = response.default;
 const { NotFoundError } = errors.default;
 
 const registerUser = async (req, res) => {
-  const { password, confirm_password, ...otherUserDetails } = req.body;
+  let password = req.body.password;
+  let confirm_password = req.body.confirm_password;
   if (password !== confirm_password) {
     return res.status(httpStatus.BAD_REQUEST).send('Password and Confirm Password do not match');
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
   const imageName = req.file ? req.file.filename : null;
-  const userDetails = await create({ ...otherUserDetails, password: hashedPassword, profile_image: imageName });
+  const userDetails = await create({ ...req.body, profile_image: imageName });
 
-  res.status(httpStatus.CREATED).send(responseHandler(userDetails));
+  res.status(httpStatus.CREATED).json({ success: true, message: "Created Successfully", data: userDetails });
 };
 
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const user = await findOne(email);
+    const user = await findOne('email', email);
     if (!user) {
       return res.status(httpStatus.UNAUTHORIZED).send('Invalid email');
     }
@@ -45,16 +45,12 @@ const loginUser = async (req, res) => {
 const updateUser = async (req, res) => {
   try {
     const userId = req.params.userId;
-    let hashedPassword;
-
-    const password = req.body.password;
-    if (password) {
-      hashedPassword = await bcrypt.hash(password, 10);
+    let imageName;
+    if (req.file) {
+      imageName = req.file.filename;
     }
 
-    const imageName = req.file ? req.file.filename : null;
-
-    const updatedUser = await update(userId, { ...req.body, password: hashedPassword, profile_image: imageName });
+    const updatedUser = await update(userId, { ...req.body, profile_image: imageName });
 
     return res.status(httpStatus.OK).json({ message: 'User updated successfully', updatedUser });
   } catch (error) {

@@ -1,3 +1,5 @@
+import bcrypt from 'bcrypt';
+
 export default (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
@@ -8,36 +10,65 @@ export default (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING,
-      field: 'name',
+      allowNull: false,
     },
-
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
     gender: {
-      type: DataTypes.ENUM,
-      values: ['Male', 'Female', 'Other'],
+      type: DataTypes.ENUM('Male', 'Female', 'Other'),
+    },
+    role: {
+      type: DataTypes.ENUM('User', 'Driver'),
+    },
+    status: {
+      type: DataTypes.STRING,
+
     },
     profile_image: {
       type: DataTypes.STRING,
-      field: 'profile_image',
     },
-    password: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+    },
     date_of_birth: {
       type: DataTypes.DATEONLY,
-      field: 'date_of_birth',
     },
     created_at: {
       type: DataTypes.DATE,
-      field: 'created_at',
-      defaultValue: DataTypes.NOW,
+      allowNull: false,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     },
     updated_at: {
       type: DataTypes.DATE,
-      field: 'updated_at',
-      defaultValue: DataTypes.NOW,
+      allowNull: false,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
     },
   }, {
     tableName: 'users',
     underscored: true,
+    timestamps: false,
+  });
+
+  User.associate = models => {
+    models.User.hasOne(models.Driver, { foreignKey: 'user_id', sourceKey: 'id' });
+  };
+
+  User.beforeCreate(async (user) => {
+    console.log(user)
+    if (user.changed('password')) {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      user.password = hashedPassword;
+    }
+  });
+
+  User.beforeUpdate(async (user) => {
+    if (user.changed('password')) {
+      const hashedPassword = await bcrypt.hash(user.password, 10);
+      user.password = hashedPassword;
+    }
   });
 
   return User;

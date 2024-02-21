@@ -1,10 +1,13 @@
 import express from 'express';
 import { Validator } from 'express-json-validator-middleware';
 import { handleGoogleAuthCallback, googleLogin, registerUser, loginUser, updateUser } from '../../controllers/user.controller.js';
-import { addUserSchema } from '../../validations/users-request.schema.js';
 import { uploadImagesToFolder } from '../../utils/imagesUpload.js';
 import { verifyToken } from '../../auth/authMiddleware.js';
 import { forgotPassword } from '../../auth/forgetPassword.js';
+import { resetPassword } from '../../auth/resetPasseord.js';
+
+import db from '../../models/index.js';
+const { User, Token } = db.db;
 
 const upload = uploadImagesToFolder("users");
 const uploadMiddleware = upload.single("profile_image");
@@ -19,10 +22,6 @@ router
 router
   .route('/auth/google/callback')
   .get(handleGoogleAuthCallback);
-
-router
-  .route('/register/google')
-  .get(googleLogin());
 
 router
   .route('/register')
@@ -41,23 +40,12 @@ router
   .post(forgotPassword);
 
 
+router
+  .route('/reset-password/:id/:token')
+  .post(resetPassword);
 
-// router.get("/reset-password/:id/:token", async (req, res) => {
-//   const { id, token } = req.params;
-//   console.log(req.params);
-//   const oldUser = await User.findOne({ _id: id });
-//   if (!oldUser) {
-//     return res.json({ status: "User Not Exists!!" });
-//   }
-//   const secret = JWT_SECRET + oldUser.password;
-//   try {
-//     const verify = jwt.verify(token, secret);
-//     res.render("index", { email: verify.email, status: "Not Verified" });
-//   } catch (error) {
-//     console.log(error);
-//     res.send("Not Verified");
-//   }
-// });
+
+
 
 // router.post("/reset-password/:id/:token", async (req, res) => {
 //   const { id, token } = req.params;
