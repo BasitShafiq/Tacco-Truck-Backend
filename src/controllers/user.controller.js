@@ -38,7 +38,7 @@ const loginUser = async (req, res) => {
     const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY, { expiresIn: '24h' });
     res.json({ token });
   } catch (error) {
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Error logging in');
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).send('Error logging in...');
   }
 };
 
