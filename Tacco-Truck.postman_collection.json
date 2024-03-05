@@ -70,7 +70,7 @@
 								},
 								{
 									"key": "role",
-									"value": "user",
+									"value": "User",
 									"type": "text"
 								},
 								{
@@ -284,6 +284,72 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Vehicle",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\":\"Example Vehicle\", \n\t \"description\":\"This is an example vehicle description\", \n\t \"registration_number\":\"ABC123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/vehicles/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"vehicles",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/vehicles/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"vehicles",
+								"update"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"vehicleId\": 1,\n\t\"name\":\"Updated Vehicle Name\", \n\t \"description\":\"Updated vehicle description\", \n\t \"registration_number\":\"XYZ789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				}
+			]
 		}
+		
 	]
 }

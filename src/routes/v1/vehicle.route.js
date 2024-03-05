@@ -14,6 +14,9 @@ const { validate } = new Validator();
 router
   .route('/create')
   .post(uploadMiddleware, addVehicle);
+// router
+//   .route('/find')
+//   .post(uploadMiddleware, addVehicle);
 
 
 export default router;

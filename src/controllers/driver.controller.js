@@ -17,12 +17,13 @@ const registerDriver = async (req, res) => {
 
   try {
 
-    const { password, confirm_password, ...otherUserDetails } = req.body;
+    let password = req.body.password;
+    let confirm_password = req.body.confirm_password;
     if (password !== confirm_password) {
       return res.status(httpStatus.BAD_REQUEST).send('Password and Confirm Password do not match');
     }
 
-    const driverDetails = await createDriver(req.body, req.file);
+    const driverDetails = await createDriver(...req.body, req.file);
     if (driverDetails.error) {
       // User already exists, return error response
       return res.status(httpStatus.BAD_REQUEST).send(driverDetails.error);

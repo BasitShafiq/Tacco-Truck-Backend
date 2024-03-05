@@ -2,8 +2,8 @@ import httpStatus from 'http-status';
 import * as errors from '../utils/api-error.js';
 import * as response from '../middlewares/response-handler.js';
 import { create } from '../services/vehicle.service.js';
-import * as auth from '../auth/passport.js'
-import bcrypt from 'bcrypt';
+// import * as auth from '../auth/passport.js'
+// import bcrypt from 'bcrypt';
 
 const responseHandler = response.default;
 const { NotFoundError } = errors.default;

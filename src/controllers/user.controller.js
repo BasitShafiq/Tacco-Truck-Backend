@@ -15,10 +15,9 @@ const registerUser = async (req, res) => {
   if (password !== confirm_password) {
     return res.status(httpStatus.BAD_REQUEST).send('Password and Confirm Password do not match');
   }
-
   const imageName = req.file ? req.file.filename : null;
   const userDetails = await create({ ...req.body, profile_image: imageName });
-
+  
   res.status(httpStatus.CREATED).json({ success: true, message: "Created Successfully", data: userDetails });
 };
 
