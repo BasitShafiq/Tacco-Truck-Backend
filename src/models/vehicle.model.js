@@ -11,12 +11,8 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      category_id: {
-        type: DataTypes.INTEGER,
-        // references: {
-        //   model: 'Categories',
-        //   key: 'id',
-        // },
+      category: {
+        type: DataTypes.STRING,
       },
       description: {
         type: DataTypes.STRING,
@@ -26,22 +22,27 @@ export default (sequelize, DataTypes) => {
       registration_number: DataTypes.TEXT,
       createdAt: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       },
       updated_at: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       },
-    }, {
+      user_id: {
+        type: DataTypes.INTEGER,
+          references: {
+                  model: 'users',
+                  key: 'id',
+              },
+      },
+    }, 
+    {
     tableName: 'vehicles',
     underscored: true,
   }
   );
-
   Vehicle.associate = models => {
-    Vehicle.hasMany(models.Category, { foreignKey: 'id', targetKey: 'id' });
-    Vehicle.hasMany(models.Driver, { foreignKey: 'vehicle_id', sourceKey: 'id' });
+    Vehicle.belongsTo(models.User, { foreignKey: 'user_id', targetKey: 'id' });
   };
-
   return Vehicle;
 };

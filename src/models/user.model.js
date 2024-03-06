@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt';
 
 export default (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+  const User = sequelize.define('User', 
+  {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
@@ -53,11 +54,11 @@ export default (sequelize, DataTypes) => {
   });
 
   User.associate = models => {
-    models.User.hasOne(models.Driver, { foreignKey: 'user_id', sourceKey: 'id' });
+    models.User.hasOne(models.Vehicle, { foreignKey: 'user_id', sourceKey: 'id' });
   };
 
   User.beforeCreate(async (user) => {
-    console.log(user)
+    // console.log(user)
     if (user.changed('password')) {
       const hashedPassword = await bcrypt.hash(user.password, 10);
       user.password = hashedPassword;

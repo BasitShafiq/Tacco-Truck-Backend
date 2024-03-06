@@ -25,9 +25,6 @@ export default (sequelize, DataTypes) => {
         underscored: true,
     });
 
-    Category.associate = models => {
-        Category.hasMany(models.Vehicle, { foreignKey: 'category_id', sourceKey: 'id' });
-    };
 
     return Category;
 };

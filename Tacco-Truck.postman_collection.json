@@ -202,90 +202,6 @@
 			]
 		},
 		{
-			"name": "Driver",
-			"item": [
-				{
-					"name": "register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"truckName\":\"Tasty Tacos\", \n\t \"truckDescription\":\"WE sell tasty tacos on wheels on remote locations\", \n\t \"vehicle_id\":\"1\", \n\t \"userId\":\"1\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:5000/v1/drivers/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"v1",
-								"drivers",
-								"register"
-							],
-							"query": [
-								{
-									"key": "truckName",
-									"value": null,
-									"disabled": true
-								},
-								{
-									"key": "truckDescription",
-									"value": null,
-									"disabled": true
-								},
-								{
-									"key": "vehicle_id",
-									"value": null,
-									"disabled": true
-								},
-								{
-									"key": "userId",
-									"value": null,
-									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "updateDriver",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/v1/drivers/update?userId=1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"v1",
-								"drivers",
-								"update"
-							],
-							"query": [
-								{
-									"key": "driverId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
 			"name": "Vehicle",
 			"item": [
 				{
@@ -294,13 +210,50 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"name\":\"Example Vehicle\", \n\t \"description\":\"This is an example vehicle description\", \n\t \"registration_number\":\"ABC123\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Example Vehicle 1",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Example Category",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "This is an example vehicle description",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "example_image.jpg",
+									"type": "text"
+								},
+								{
+									"key": "registration_number",
+									"value": "ABC123",
+									"type": "text"
+								},
+								{
+									"key": "created_at",
+									"value": "2024-03-07T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "updated_at",
+									"value": "2024-03-07T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "example_user_id",
+									"type": "text"
 								}
-							}
+							]
+							
 						},
 						"url": {
 							"raw": "http://localhost:5000/v1/vehicles/create",
@@ -333,6 +286,110 @@
 							"path": [
 								"v1",
 								"vehicles",
+								"update"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"vehicleId\": 1,\n\t\"name\":\"Updated Vehicle Name\", \n\t \"description\":\"Updated vehicle description\", \n\t \"registration_number\":\"XYZ789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				}
+			]
+		}
+		,
+		{
+			"name": "menu_item",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Example Menu Item 1",
+									"type": "text"
+								},
+								{
+									"key": "vehicle_id",
+									"value": "example_vehicle_id",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "50.00",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "example_image.jpg",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Example Category",
+									"type": "text"
+								},
+								{
+									"key": "created_at",
+									"value": "2024-03-07T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "updated_at",
+									"value": "2024-03-07T00:00:00.000Z",
+									"type": "text"
+								}
+						]
+							
+							
+						},
+						"url": {
+							"raw": "http://localhost:5000/v1/menu_item/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"menu_item",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/menu_item/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"menu_item",
 								"update"
 							]
 						},
