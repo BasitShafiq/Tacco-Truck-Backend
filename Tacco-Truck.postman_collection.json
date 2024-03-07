@@ -1,22 +1,20 @@
 {
 	"info": {
-		"_postman_id": "cfe73c27-17d2-4b9f-96fa-fbf7fb353d9b",
+		"_postman_id": "86db8739-b933-46ec-813e-f3563f5ff5cc",
 		"name": "Tacco-Truck",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25406548"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "14373548"
 	},
 	"item": [
 		{
 			"name": "User",
 			"item": [
 				{
-					"name": "GoogleLogin",
+					"name": "google-login",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": {
-							"raw": ""
-						}
+						"url": "{{API_URL}}v1/users/register/google"
 					},
 					"response": []
 				},
@@ -30,17 +28,12 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "dummy@gmail.com",
+									"value": "talha@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "Basit",
-									"type": "text"
-								},
-								{
-									"key": "profile_image",
-									"value": "",
+									"value": "Anjum Talha",
 									"type": "text"
 								},
 								{
@@ -61,7 +54,7 @@
 								{
 									"key": "profile_image",
 									"type": "file",
-									"src": "/D:/Wallpapers/blue_windows_11_stock_logo_microsoft_minimalist_operating_system_4k_hd_windows_11-1920x1080.jpg"
+									"src": "/D:/Wallpapers/profile/Brown Wood Minimalist Profile LinkedIn Banner.png"
 								},
 								{
 									"key": "gender",
@@ -86,14 +79,11 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:5000/v1/users/register",
-							"protocol": "http",
+							"raw": "{{API_URL}}v1/users/register",
 							"host": [
-								"localhost"
+								"{{API_URL}}v1"
 							],
-							"port": "5000",
 							"path": [
-								"v1",
 								"users",
 								"register"
 							],
@@ -137,7 +127,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"dummy@gmail.com\",\r\n    \"password\": \"abc\"\r\n}",
+							"raw": "{\r\n    \"email\": \"talha@gmail.com\",\r\n    \"password\": \"abc\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -145,14 +135,11 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/v1/users/login",
-							"protocol": "http",
+							"raw": "{{API_URL}}v1/users/login",
 							"host": [
-								"localhost"
+								"{{API_URL}}v1"
 							],
-							"port": "5000",
 							"path": [
-								"v1",
 								"users",
 								"login"
 							],
@@ -178,14 +165,11 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:5000/v1/users/update?userId=1",
-							"protocol": "http",
+							"raw": "{{API_URL}}v1/users/update?userId=1",
 							"host": [
-								"localhost"
+								"{{API_URL}}v1"
 							],
-							"port": "5000",
 							"path": [
-								"v1",
 								"users",
 								"update"
 							],
@@ -196,6 +180,42 @@
 								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "forget-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"mughalabdul512@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{API_URL}}v1/users/forgot-password"
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\":\"abcd\",\r\n    \"confirm_password\":\"abcd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{API_URL}}v1/users/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11Z2hhbGFiZHVsNTEyQGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE3MDk4MTY3NjcsImV4cCI6MTcwOTgxNzA2N30.0gddACmOCjj36fsWSB9tc9ONwDPnmDCfgIdFyhG4nO8"
 					},
 					"response": []
 				}
@@ -253,21 +273,8 @@
 									"type": "text"
 								}
 							]
-							
 						},
-						"url": {
-							"raw": "http://localhost:5000/v1/vehicles/create",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"v1",
-								"vehicles",
-								"create"
-							]
-						}
+						"url": "{{API_URL}}v1/vehicles/create"
 					},
 					"response": []
 				},
@@ -276,19 +283,6 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/v1/vehicles/update",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"v1",
-								"vehicles",
-								"update"
-							]
-						},
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n\t\"vehicleId\": 1,\n\t\"name\":\"Updated Vehicle Name\", \n\t \"description\":\"Updated vehicle description\", \n\t \"registration_number\":\"XYZ789\"\n}",
@@ -297,15 +291,15 @@
 									"language": "json"
 								}
 							}
-						}
+						},
+						"url": "{{API_URL}}v1/vehicles/update"
 					},
 					"response": []
 				}
 			]
-		}
-		,
+		},
 		{
-			"name": "menu_item",
+			"name": "Menu Items",
 			"item": [
 				{
 					"name": "create",
@@ -355,23 +349,9 @@
 									"value": "2024-03-07T00:00:00.000Z",
 									"type": "text"
 								}
-						]
-							
-							
-						},
-						"url": {
-							"raw": "http://localhost:5000/v1/menu_item/create",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"v1",
-								"menu_item",
-								"create"
 							]
-						}
+						},
+						"url": "{{API_URL}}v1/menu_item/create"
 					},
 					"response": []
 				},
@@ -380,19 +360,6 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/v1/menu_item/update",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"v1",
-								"menu_item",
-								"update"
-							]
-						},
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n\t\"vehicleId\": 1,\n\t\"name\":\"Updated Vehicle Name\", \n\t \"description\":\"Updated vehicle description\", \n\t \"registration_number\":\"XYZ789\"\n}",
@@ -401,12 +368,77 @@
 									"language": "json"
 								}
 							}
-						}
+						},
+						"url": "{{API_URL}}v1/menu_item/update"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reviews",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"user_id\": 1,\r\n  \"rating\": 4.5,\r\n  \"feedback\": \"Tasty Tacos on Wheels is a hidden gem when it comes to tamales. Their tamales are incredibly flavorful and moist, with a variety of fillings to choose from.\",\r\n  \"vehicle_id\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{API_URL}}v1/reviews/create"
+					},
+					"response": []
+				},
+				{
+					"name": "get-by-vehicle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}v1/reviews/get-by-vehicle/1"
 					},
 					"response": []
 				}
 			]
 		}
-		
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcwOTgyMzk3MywiZXhwIjoxNzA5OTEwMzczfQ.ktUrJjM0kE7l9vnNTkNED99703KVnA_aDAyDM9FnpfQ"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:5000/",
+			"type": "string"
+		}
 	]
 }
