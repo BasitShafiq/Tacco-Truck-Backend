@@ -24,23 +24,24 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       },
-      updated_at: {
+      updatedAt: {
         type: DataTypes.DATE,
         defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
       },
       user_id: {
         type: DataTypes.INTEGER,
-          references: {
-                  model: 'users',
-                  key: 'id',
-              },
+        references: {
+          model: 'users',
+          key: 'id',
+        },
       },
-    }, 
+    },
     {
-    tableName: 'vehicles',
-    underscored: true,
-  }
+      tableName: 'vehicles',
+      underscored: true,
+    }
   );
+
   Vehicle.associate = models => {
     Vehicle.belongsTo(models.User, { foreignKey: 'user_id', targetKey: 'id' });
   };

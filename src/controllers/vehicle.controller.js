@@ -9,11 +9,13 @@ const responseHandler = response.default;
 const { NotFoundError } = errors.default;
 
 const addVehicle = async (req, res) => {
-  console.log(req.body)
-  const imageName = req.file ? req.file.filename : null;
-  const vehDetails = await create({ ...req.body, image: imageName });
-
-  res.status(httpStatus.CREATED).send(responseHandler(vehDetails));
+  try {
+    const imageName = req.file ? req.file.filename : null;
+    const vehDetails = await create({ ...req.body, image: imageName });
+    res.status(httpStatus.CREATED).send(responseHandler(vehDetails));
+  } catch (error) {
+    return res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ success: false, message: "Internal Server Error" });
+  }
 };
 
 export {

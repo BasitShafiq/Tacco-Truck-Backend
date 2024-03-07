@@ -20,7 +20,6 @@ await Promise.all(files.map(async file => {
   const modulePath = 'file://' + join(__dirname, file).replace(/\\/g, '/');
   const model = (await import(modulePath)).default(sequelize, DataTypes);
   db[model.name] = model;
-  console.log(db[model.name])
 }));
 
 Object.keys(db).forEach(modelName => {
@@ -31,7 +30,7 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-sequelize.sync({  });
+sequelize.sync({});
 
 export default {
   db,
