@@ -22,7 +22,6 @@ const update = async (userId, updatedUserData) => {
     if (!user) {
       throw new Error('User not found');
     }
-
     await user.update(updatedUserData);
 
     return user;
