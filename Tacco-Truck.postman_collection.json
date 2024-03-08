@@ -404,6 +404,15 @@
 						"url": "{{API_URL}}v1/reviews/get-by-vehicle/1"
 					},
 					"response": []
+				},
+				{
+					"name": "get-by-user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{API_URL}}v1/reviews/get-by-user/1"
+					},
+					"response": []
 				}
 			]
 		}
