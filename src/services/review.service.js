@@ -1,6 +1,6 @@
 
 import db from '../models/index.js';
-const { Review, User } = db.db;
+const { Review, User, Vehicle } = db.db;
 
 const create = async data => Review.create(data);
 
@@ -19,8 +19,26 @@ const findByVehicleId = async (vehicleId) => {
     }
 };
 
+const findByUserId = async (userId) => {
+    try {
+        const reviews = await Review.findAll({
+            where: { user_id: userId },
+            include: {
+                model: Vehicle,
+                attributes: ['name']
+            }
+        });
+        console.log(reviews)
+        return reviews;
+    } catch (error) {
+        console.log(error)
+        throw error;
+    }
+};
+
 
 export {
     create,
-    findByVehicleId
+    findByVehicleId,
+    findByUserId
 };
