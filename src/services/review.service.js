@@ -28,10 +28,8 @@ const findByUserId = async (userId) => {
                 attributes: ['name']
             }
         });
-        console.log(reviews)
         return reviews;
     } catch (error) {
-        console.log(error)
         throw error;
     }
 };
