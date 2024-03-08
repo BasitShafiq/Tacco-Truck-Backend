@@ -2,7 +2,6 @@ import { findOne, update } from "../services/user.service.js"
 import httpStatus from 'http-status';
 import jwt from 'jsonwebtoken';
 
-
 export const resetPassword = async (req, res) => {
 
     try {
