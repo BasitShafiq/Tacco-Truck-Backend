@@ -18,7 +18,27 @@ const update= async (vehicleId,updatedVehDetails) => {
   }
 
 }
+const findOne = async (attribute, value) => {
+  try {
+    const vehicle = await Vehicle.findOne({
+      where: { [attribute]: value }
+    });
+    return vehicle;
+  } catch (error) {
+    throw error;
+  }
+}
+const getItem = async (itemId) => {
+  try {
+    const vehicle = await Vehicle.findByPk(itemId    );
+    return vehicle;
+  } catch (error) {
+    throw error;
+  }
+}
 export {
   create,
-  update
+  update,
+  findOne,
+  getItem
 };

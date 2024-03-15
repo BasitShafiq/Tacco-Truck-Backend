@@ -27,6 +27,8 @@ const updateVehicle = async (req, res) => {
     }
 
     const updatedVehDetails = await update(req.params.id,{ ...req.body, image: imageName });
+
+   
     return  res.status(httpStatus.OK).json({message:"vehicle updated succefully!",updatedVehDetails});
   
   } catch (error) {

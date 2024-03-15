@@ -283,28 +283,55 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
-						"url": {
-							"raw": "http://localhost:5000/v1/vehicles/update",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "5000",
-							"path": [
-								"v1",
-								"vehicles",
-								"update"
+						
+						
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Example Vehicle 1",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Example Category",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "This is an example vehicle description",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "example_image.jpg",
+									"type": "text"
+								},
+								{
+									"key": "registration_number",
+									"value": "ABC123",
+									"type": "text"
+								},
+								{
+									"key": "created_at",
+									"value": "2024-03-07T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "updated_at",
+									"value": "2024-03-07T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "user_id",
+									"value": "example_user_id",
+									"type": "text"
+								}
 							]
 						},
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"vehicleId\": 1,\n\t\"name\":\"Updated Vehicle Name\", \n\t \"description\":\"Updated vehicle description\", \n\t \"registration_number\":\"XYZ789\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						}
+							"url": "{{API_URL}}v1/vehicles/update?id=1"
+						
 					},
 					"response": []
 				}
@@ -373,14 +400,71 @@
 						"method": "PUT",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"vehicleId\": 1,\n\t\"name\":\"Updated Vehicle Name\", \n\t \"description\":\"Updated vehicle description\", \n\t \"registration_number\":\"XYZ789\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Example Menu Item 1",
+									"type": "text"
+								},
+								{
+									"key": "vehicle_id",
+									"value": "example_vehicle_id",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "50.00",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "example_image.jpg",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Example Category",
+									"type": "text"
+								},
+								{
+									"key": "created_at",
+									"value": "2024-03-07T00:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "updated_at",
+									"value": "2024-03-07T00:00:00.000Z",
+									"type": "text"
 								}
-							}
-						}
+							]
+						},
+						"url": "{{API_URL}}v1/menu_item/update?itemId=1"
+					},
+					"response": []
+				},
+				{
+					"name": "getMenu",
+					"request": {
+						"method": "GET",
+						"header": [],
+						
+						"url": "{{API_URL}}v1/menu_item/getMenu?vehId=1"
+					},
+					"response": []
+				},
+				{
+					"name": "getMenuItem",
+					"request": {
+						"method": "GET",
+						"header": [],
+						
+						"url": "{{API_URL}}v1/menu_item/getMenuItem?itemId=1"
 					},
 					"response": []
 				}
