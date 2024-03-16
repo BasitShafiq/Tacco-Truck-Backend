@@ -7,11 +7,12 @@ import 'dotenv/config';
 import app from './app.js';
 import { gracefulShutdown } from './utils/graceful-shutdown.js';
 import { Logger } from './config/logger.js';
-import db from './models/index.js';
+import { createClient } from 'redis';
+
 
 const logger = Logger(fileURLToPath(import.meta.url));
 
-const port = process.env.APP_PORT || 5000;
+const port = process.env.PORT || 5000;
 
 const server = app.listen(port, () => {
   logger.info(`App running on port ${chalk.greenBright(port)}...`);
@@ -47,4 +48,9 @@ process.on('uncaughtException', async uncaughtExc => {
     await gracefulShutdown(server);
   });
 });
-export default server;
+
+const client = createClient();
+client.on('error', err => console.log('Redis Client Error', err));
+await client.connect();
+
+export { server, client };
