@@ -5,6 +5,7 @@ import vehicleRoute from './vehicle.route.js';
 import menuItemRoute from './menuItem.route.js';
 import categoryRoute from './category.route.js';
 import reviewRoute from './review.route.js';
+import notificationRoute from './notification.route.js';
 
 const router = express.Router();
 
@@ -13,5 +14,6 @@ router.use('/categories', categoryRoute);
 router.use('/menu_item', menuItemRoute);
 router.use('/vehicles', vehicleRoute);
 router.use('/reviews', reviewRoute);
+router.use('/notifications', notificationRoute);
 
 export default router;

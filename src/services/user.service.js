@@ -6,6 +6,7 @@ const create = async data => User.create(data);
 
 const findOne = async (attribute, value) => {
   try {
+
     const user = await User.findOne({
       where: { [attribute]: value }
     });

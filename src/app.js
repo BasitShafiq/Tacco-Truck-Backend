@@ -9,6 +9,7 @@ import { Logger } from './config/logger.js';
 import v1Routes from './routes/v1/index.js';
 import * as auth from '../src/auth/passport.js';
 import session from 'express-session';
+
 const logger = Logger(fileURLToPath(import.meta.url));
 
 const app = express();

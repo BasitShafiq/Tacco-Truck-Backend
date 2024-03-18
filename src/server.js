@@ -14,7 +14,7 @@ const logger = Logger(fileURLToPath(import.meta.url));
 
 const port = process.env.PORT || 5000;
 
-const server = app.listen(port, "0.0.0.0", () => {
+const server = app.listen(port, () => {
   logger.info(`App running on port ${chalk.greenBright(port)}...`);
 });
 

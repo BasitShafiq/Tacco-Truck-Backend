@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-    const Review = sequelize.define('Review',
+    const Notification = sequelize.define('Notification',
         {
             id: {
                 type: DataTypes.INTEGER,
@@ -15,20 +15,9 @@ export default (sequelize, DataTypes) => {
                     key: 'id',
                 },
             },
-            rating: {
-                type: DataTypes.FLOAT,
-            },
-            feedback: {
+            fcm_token: {
                 type: DataTypes.STRING,
-                allowNull: true,
-            },
-            vehicle_id: {
-                type: DataTypes.INTEGER,
                 allowNull: false,
-                references: {
-                    model: 'vehicles',
-                    key: 'id',
-                },
             },
             createdAt: {
                 type: DataTypes.DATE,
@@ -40,15 +29,11 @@ export default (sequelize, DataTypes) => {
             },
         },
         {
-            tableName: 'reviews',
+            tableName: 'notifications',
             underscored: true,
         }
     );
 
-    Review.associate = (models) => {
-        Review.belongsTo(models.User, { foreignKey: 'user_id' });
-        Review.belongsTo(models.Vehicle, { foreignKey: 'vehicle_id' });
-    };
 
-    return Review;
+    return Notification;
 };
