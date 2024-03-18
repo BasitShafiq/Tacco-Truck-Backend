@@ -16,22 +16,21 @@ const create = async data => MenuItem.create(data);
 //   }
 // };
 
-// const update = async (userId, updatedUserData) => {
-//   try {
-//     const user = await User.findByPk(userId);
-//     if (!user) {
-//       throw new Error('User not found');
-//     }
+const update = async (itemId, updatedItemData) => {
+  try {
+    const menu_item = await MenuItem.findByPk(itemId);
+    if (!menu_item) {
+      throw new Error('menu item not found');
+    }
+    await menu_item.update(updatedItemData);
 
-//     await user.update(updatedUserData);
-
-//     return user;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+    return menu_item;
+  } catch (error) {
+    throw error;
+  }
+};
 export {
   create,
 //   findOne,
-//   update
+  update
 };

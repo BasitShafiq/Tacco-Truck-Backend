@@ -8,7 +8,6 @@ const verifyToken = (req, res, next) => {
     }
 
     const [bearer, token] = tokenHeader.split(' ');
-
     if (bearer !== 'Bearer' || !token) {
         return res.status(httpStatus.UNAUTHORIZED).json({ success: false, message: "Invalid Token format" });
 

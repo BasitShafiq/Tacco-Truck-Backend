@@ -283,6 +283,19 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/v1/vehicles/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"v1",
+								"vehicles",
+								"update"
+							]
+						},
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n\t\"vehicleId\": 1,\n\t\"name\":\"Updated Vehicle Name\", \n\t \"description\":\"Updated vehicle description\", \n\t \"registration_number\":\"XYZ789\"\n}",
@@ -291,8 +304,7 @@
 									"language": "json"
 								}
 							}
-						},
-						"url": "{{API_URL}}v1/vehicles/update"
+						}
 					},
 					"response": []
 				}
@@ -368,40 +380,7 @@
 									"language": "json"
 								}
 							}
-						},
-						"url": "{{API_URL}}v1/menu_item/update"
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Reviews",
-			"item": [
-				{
-					"name": "create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"user_id\": 1,\r\n  \"rating\": 4.5,\r\n  \"feedback\": \"Tasty Tacos on Wheels is a hidden gem when it comes to tamales. Their tamales are incredibly flavorful and moist, with a variety of fillings to choose from.\",\r\n  \"vehicle_id\": 1\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{API_URL}}v1/reviews/create"
-					},
-					"response": []
-				},
-				{
-					"name": "get-by-vehicle",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "{{API_URL}}v1/reviews/get-by-vehicle/1"
+						}
 					},
 					"response": []
 				},
