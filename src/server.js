@@ -53,4 +53,5 @@ process.on('uncaughtException', async uncaughtExc => {
 // client.on('error', err => console.log('Redis Client Error', err));
 // await client.connect();
 
-export { server, client };
+// export { server, client };
+export { server };
